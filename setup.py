@@ -269,19 +269,22 @@ def main():
     verify_datasets(train_datasets)
     verify_datasets(test_datasets)
 
+    # 訓練データと検証データに分割
     valid_dataset, valid_labels, train_dataset, train_labels = \
         merge_datasets(train_datasets, train_size, valid_size)
 
     _, _, test_dataset, test_labels = merge_datasets(test_datasets, test_size)
 
+    # データをシャッフル
     train_dataset, train_labels = randomize(train_dataset, train_labels)
     valid_dataset, valid_labels = randomize(valid_dataset, valid_labels)
     test_dataset, test_labels = randomize(test_dataset, test_labels)
 
-    print('training:', train_dataset.shape, train_labels.shape)
-    print('validation:', valid_dataset.shape, valid_labels.shape)
-    print('testing:', test_dataset.shape, test_labels.shape)
+    print('train:', train_dataset.shape, train_labels.shape)
+    print('validate:', valid_dataset.shape, valid_labels.shape)
+    print('test:', test_dataset.shape, test_labels.shape)
 
+    # 各クラスのデータ数にばらつきがないか検証
     verify_class_balance(train_labels)
     verify_class_balance(valid_labels)
     verify_class_balance(test_labels)
