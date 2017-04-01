@@ -240,7 +240,7 @@ def verify_class_balance(labels):
 
 
 def main():
-    result_dir = 'results'
+    result_dir = 'result'
 
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
