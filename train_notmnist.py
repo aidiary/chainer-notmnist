@@ -42,7 +42,7 @@ def main():
     if args.model == 'LogReg':
         model = LogReg(n_out=10)
     elif args.model == 'MLP':
-        model = MLP(n_out=10)
+        model = MLP(n_units=args.unit, n_out=10)
     elif args.model == 'CNN':
         model = CNN(n_out=10)
 
