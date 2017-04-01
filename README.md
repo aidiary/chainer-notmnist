@@ -7,7 +7,8 @@
 ## Requirements
 
 - Python 3.5
-- Chainer 1.21.0
+- Chainer 1.22.0
+- scikit-learn
 - matplotlib
 
 ## Logistic regression (scikit-learn)
