@@ -29,6 +29,8 @@ def main():
     parser.add_argument('--model', '-m',
                         choices=('LogReg', 'MLP', 'CNN'),
                         default='LogReg', help='model type')
+    parser.add_argument('--reg', None,
+                        choices=('L2'), default='', help='regularization')
     args = parser.parse_args()
 
     print('GPU: {}'.format(args.gpu))
@@ -36,6 +38,7 @@ def main():
     print('# Minibatch-size: {}'.format(args.batchsize))
     print('# epoch: {}'.format(args.epoch))
     print('model type: {}'.format(args.model))
+    print('regularization: {}'.format(args.reg))
     print('')
 
     # Set up a neural network to train
@@ -53,6 +56,11 @@ def main():
 
     # Setup an optimizer
     optimizer = chainer.optimizers.MomentumSGD()
+
+    # L2正則化
+    if args.reg == 'L2':
+        optimizer.add_hook(chainer.optimizer.WeightDecay(0.0005))
+
     optimizer.setup(model)
 
     # Load the notMNIST dataset
