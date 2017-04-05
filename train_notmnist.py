@@ -14,7 +14,7 @@ from net import *
 
 def main():
     parser = argparse.ArgumentParser(description='Chainer example: notMNIST')
-    parser.add_argument('--batchsize', '-b', type=int, default=100,
+    parser.add_argument('--batchsize', '-b', type=int, default=128,
                         help='Number of images in each mini-batch')
     parser.add_argument('--epoch', '-e', type=int, default=20,
                         help='Number of sweeps over the dataset to train')
@@ -24,7 +24,7 @@ def main():
                         help='Directory to output the result')
     parser.add_argument('--resume', '-r', default='',
                         help='Resume the training from snapshot')
-    parser.add_argument('--unit', '-u', type=int, default=1000,
+    parser.add_argument('--unit', '-u', type=int, default=1024,
                         help='Number of units')
     parser.add_argument('--model', '-m',
                         choices=('LogReg', 'MLP', 'CNN'),
@@ -71,6 +71,7 @@ def main():
     num_train = len(train_dataset)
     num_test = len(test_dataset)
 
+    # LogRegとMLPでは二次元画像を一次元配列に変換して入力する
     if args.model == 'LogReg' or args.model == 'MLP':
         train_dataset = train_dataset.reshape(num_train, -1)
         test_dataset = test_dataset.reshape(num_test, -1)

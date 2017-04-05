@@ -23,15 +23,9 @@ class MLP(chainer.Chain):
         self.activation = activation
         super(MLP, self).__init__(
             l1=L.Linear(None, n_units),
-            l2=L.Linear(None, n_units),
-            l3=L.Linear(None, n_units),
-            l4=L.Linear(None, n_units),
-            l5=L.Linear(None, n_out)
+            l2=L.Linear(n_units, n_out)
         )
 
     def __call__(self, x):
         h = self.activation(self.l1(x))
-        h = self.activation(self.l2(h))
-        h = self.activation(self.l3(h))
-        h = self.activation(self.l4(h))
-        return self.l5(h)
+        return self.l2(h)
