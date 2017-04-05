@@ -245,6 +245,9 @@ def main():
     if not os.path.exists(data_dir):
         os.makedirs(data_dir)
 
+    if not os.path.exists(result_dir):
+        os.makedirs(result_dir)
+
     train_filename = maybe_download('notMNIST_large.tar.gz', 247336696)
     test_filename = maybe_download('notMNIST_small.tar.gz', 8458043)
 
